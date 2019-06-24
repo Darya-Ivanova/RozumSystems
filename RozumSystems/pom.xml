@@ -7,15 +7,38 @@
     <groupId>Test</groupId>
     <artifactId>SpeedTest</artifactId>
     <version>1.0-SNAPSHOT</version>
+	<properties>
+        <allure.version>1.5.2</allure.version>
+        <selenium.version>2.53.1</selenium.version>
+        <aspectj.version>1.8.5</aspectj.version>
+        <testng.version>6.11</testng.version>
+        <appium-java-client.version>4.1.2</appium-java-client.version>
+    </properties>
+	
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <skipTests>false</skipTests>
+                    <!--<suiteXmlFiles>
+                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>-->
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <argLine>
+                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                        -Dcucumber.options="--plugin ru.yandex.qatools.allure.cucumberjvm.AllureReporter"
+                    </argLine>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
@@ -71,7 +94,23 @@
             <artifactId>jsoup</artifactId>
             <version>1.7.2</version>
         </dependency>
+		 <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-cucumber-jvm-adaptor</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+		<dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+		<dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>${appium-java-client.version}</version>
+        </dependency>
     </dependencies>
+	
 
 
 </project>

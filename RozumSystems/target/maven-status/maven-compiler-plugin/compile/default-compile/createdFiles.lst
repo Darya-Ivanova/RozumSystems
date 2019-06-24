@@ -1,0 +1,7 @@
+Pages\MainPage.class
+Pages\AbstractPage.class
+core\BrowserDriver\BrowserFactory.class
+core\Utils\TestProperties.class
+core\Utils\Log.class
+core\BrowserDriver\BrowserFactory$1.class
+core\BrowserDriver\BrowserType.class
