@@ -5,6 +5,7 @@ import core.BrowserDriver.BrowserFactory;
 import core.Utils.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import java.util.concurrent.TimeUnit;
@@ -18,11 +19,11 @@ public class BaseTest {
         startDriver();
     }
 
-//    @AfterClass(alwaysRun = true)
-//    public void closeBrowser() {
-//        closeDriver();
-//        Log.info("Конец теста в: " + getClass().getSimpleName() + "\n");
-//    }
+    @AfterClass(alwaysRun = true)
+    public void closeBrowser() {
+        closeDriver();
+        Log.info("Конец теста в: " + getClass().getSimpleName() + "\n");
+    }
 
     protected void startDriver() {
         driver = new BrowserFactory().getWebDriver();
